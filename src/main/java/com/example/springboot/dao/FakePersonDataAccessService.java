@@ -19,12 +19,6 @@ public class FakePersonDataAccessService implements PersonDao {
         return 1;
     }
 
-//    @Override
-//    public int insertPeople(List<Person> people) {
-//        people.forEach(person -> DB.add(new Person(person.getId(), person.getName())));
-//        return 1;
-//    }
-
     @Override
     public List<Person> selectAllPeople() {
         return DB;
@@ -51,12 +45,12 @@ public class FakePersonDataAccessService implements PersonDao {
     public int upadtePersonById(UUID id, Person update) {
         return selectPersonById(id)
                 .map(person -> {
-                  int indexOfPersonToUpdate = DB.indexOf(person);
-                  if (indexOfPersonToUpdate >= 0) {
-                      DB.set(indexOfPersonToUpdate, new Person(id, update.getName()));
-                      return 1;
-                  }
-                  return 0;
+                    int indexOfPersonToUpdate = DB.indexOf(person);
+                    if (indexOfPersonToUpdate >= 0) {
+                        DB.set(indexOfPersonToUpdate, new Person(id, update.getName()));
+                        return 1;
+                    }
+                    return 0;
                 })
                 .orElse(0);
     }
